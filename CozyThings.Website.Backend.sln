@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B63C6E4A-91EA-4FE6-AADE-194ADA7E7377}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{42E5A562-D7E1-4AFD-8263-2B2E0857DE79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{73617238-13C4-4AF5-8077-ECE01B9BD509}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThings.Frontend.Web", "CozyThings.Frontend.Web\CozyThings.Frontend.Web.csproj", "{B1011AE1-9829-41B0-8E96-907B55DC2687}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CozyThings.Services.ProductApi", "CozyThings.Services.ProductApi\CozyThings.Services.ProductApi.csproj", "{CD447636-5E58-43C7-8996-68B16A6B9475}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1011AE1-9829-41B0-8E96-907B55DC2687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1011AE1-9829-41B0-8E96-907B55DC2687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1011AE1-9829-41B0-8E96-907B55DC2687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1011AE1-9829-41B0-8E96-907B55DC2687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD447636-5E58-43C7-8996-68B16A6B9475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD447636-5E58-43C7-8996-68B16A6B9475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD447636-5E58-43C7-8996-68B16A6B9475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD447636-5E58-43C7-8996-68B16A6B9475}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1011AE1-9829-41B0-8E96-907B55DC2687} = {42E5A562-D7E1-4AFD-8263-2B2E0857DE79}
+		{CD447636-5E58-43C7-8996-68B16A6B9475} = {B63C6E4A-91EA-4FE6-AADE-194ADA7E7377}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {324D5E23-3FEA-44B0-B9FA-C46B9041341F}
+	EndGlobalSection
+EndGlobal
