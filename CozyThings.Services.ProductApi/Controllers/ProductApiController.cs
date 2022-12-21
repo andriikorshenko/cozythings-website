@@ -81,7 +81,7 @@ namespace CozyThings.Services.ProductApi.Controllers
             return response;
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ResponseDto> Delete(int id)
         {
             try
