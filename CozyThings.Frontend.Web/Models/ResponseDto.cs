@@ -1,4 +1,4 @@
-﻿namespace CozyThings.Services.ProductApi.Models
+﻿namespace CozyThings.Frontend.Web.Models
 {
     public class ResponseDto
     {

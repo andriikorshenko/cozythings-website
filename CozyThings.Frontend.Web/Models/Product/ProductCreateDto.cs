@@ -1,4 +1,4 @@
-﻿namespace CozyThings.Services.ProductApi.Models.Product
+﻿namespace CozyThings.Frontend.Web.Models.Product
 {
     public record ProductCreateDto
     {
