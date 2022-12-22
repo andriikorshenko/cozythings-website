@@ -1,5 +1,4 @@
-﻿@using CozyThings.Frontend.Web.Models.Product;
-@model IEnumerable<ProductViewModel>
+﻿@model IEnumerable<ProductViewModel>
 @{
     ViewData["Title"] = "Products";
 }
@@ -9,7 +8,9 @@
 <div class="container p-4 border w-60">
     <div class="row pb-2">
         <div class="col">
-            <h1 class="text-primary">Products</h1>
+            <h1 class="text-primary">
+                @ViewBag.Title
+            </h1>
         </div>
         <div class="col text-end pt-2">
             <a asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-circle"></i> Add New Product</a>
