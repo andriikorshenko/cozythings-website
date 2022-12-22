@@ -1,4 +1,5 @@
-﻿using CozyThings.Frontend.Web.Models;
+﻿using AutoMapper;
+using CozyThings.Frontend.Web.Models;
 using CozyThings.Frontend.Web.Models.Product;
 using CozyThings.Frontend.Web.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,12 @@ namespace CozyThings.Frontend.Web.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService productService;
+        private readonly IMapper mapper;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IMapper mapper)
         {
             this.productService = productService;
+            this.mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -24,7 +27,8 @@ namespace CozyThings.Frontend.Web.Controllers
             {
                 products = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(response.Result));
             }
-            return View(products);
+            var list = mapper.Map<IReadOnlyList<ProductViewModel>>(products);
+            return View(list);
         }
     }
 }
