@@ -18,7 +18,6 @@ namespace CozyThings.Frontend.Web.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             List<ProductDto> products = new();
@@ -32,7 +31,6 @@ namespace CozyThings.Frontend.Web.Controllers
             return View(list);
         }
 
-        [HttpGet("create")]
         public IActionResult Create()
         {
             return View("CreateOrUpdate", new ProductViewModel()
@@ -41,7 +39,7 @@ namespace CozyThings.Frontend.Web.Controllers
             });
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductViewModel model)
         {
@@ -49,6 +47,35 @@ namespace CozyThings.Frontend.Web.Controllers
             {
                 var product = mapper.Map<ProductCreateDto>(model);
                 var response = await productService.CreateProductAsync<ResponseDto>(product);
+                if (response != null & response.IsSuccess)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            var responseDto = await productService.GetProductByIdAsync<ResponseDto>(id);
+            if (responseDto == null)
+            {
+                return NotFound();
+            }
+            var des = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(responseDto.Result));
+            var model = mapper.Map<ProductViewModel>(des);
+            model.Action = FormAction.Update;
+            return View("CreateOrUpdate", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(ProductViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var product = mapper.Map<ProductUpdateDto>(model);
+                var response = await productService.UpdateProductAsync<ResponseDto>(product);
                 if (response != null & response.IsSuccess)
                 {
                     return RedirectToAction(nameof(Index));

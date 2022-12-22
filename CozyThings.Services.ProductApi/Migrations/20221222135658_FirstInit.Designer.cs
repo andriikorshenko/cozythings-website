@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CozyThings.Services.ProductApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221221190321_SeededProductsOnDbInit")]
-    partial class SeededProductsOnDbInit
+    [Migration("20221222135658_FirstInit")]
+    partial class FirstInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,10 @@ namespace CozyThings.Services.ProductApi.Migrations
             modelBuilder.Entity("CozyThings.Services.ProductApi.Data.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
