@@ -83,5 +83,16 @@ namespace CozyThings.Frontend.Web.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var responseDto = await productService.DeleteProductAsync<ResponseDto>(id);
+            if (responseDto != null && responseDto.IsSuccess) 
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+        }
     }
 }

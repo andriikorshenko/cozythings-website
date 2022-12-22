@@ -59,7 +59,7 @@ namespace CozyThings.Services.ProductApi.Repository.Imp
         {
             try
             {
-                var product = Products.FirstOrDefaultAsync(x => x.Id == id);
+                var product = await Products.FirstOrDefaultAsync(x => x.Id == id);
                 if (product == null)
                 {
                     return false;
