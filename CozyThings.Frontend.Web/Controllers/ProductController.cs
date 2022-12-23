@@ -22,10 +22,10 @@ namespace CozyThings.Frontend.Web.Controllers
         {
             List<ProductDto> products = new();
 
-            var response = await productService.GetAllProductsAsync<ResponseDto>();
-            if (response != null & response.IsSuccess)
+            var responseDto = await productService.GetAllProductsAsync<ResponseDto>();
+            if (responseDto != null & responseDto.IsSuccess)
             {
-                products = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(response.Result));
+                products = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(responseDto.Result));
             }
             var list = mapper.Map<IReadOnlyList<ProductViewModel>>(products);
             return View(list);
@@ -46,8 +46,8 @@ namespace CozyThings.Frontend.Web.Controllers
             if (ModelState.IsValid)
             {
                 var product = mapper.Map<ProductCreateDto>(model);
-                var response = await productService.CreateProductAsync<ResponseDto>(product);
-                if (response != null & response.IsSuccess)
+                var responseDto = await productService.CreateProductAsync<ResponseDto>(product);
+                if (responseDto != null & responseDto.IsSuccess)
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -75,8 +75,8 @@ namespace CozyThings.Frontend.Web.Controllers
             if (ModelState.IsValid)
             {
                 var product = mapper.Map<ProductUpdateDto>(model);
-                var response = await productService.UpdateProductAsync<ResponseDto>(product);
-                if (response != null & response.IsSuccess)
+                var responseDto = await productService.UpdateProductAsync<ResponseDto>(product);
+                if (responseDto != null & responseDto.IsSuccess)
                 {
                     return RedirectToAction(nameof(Index));
                 }
