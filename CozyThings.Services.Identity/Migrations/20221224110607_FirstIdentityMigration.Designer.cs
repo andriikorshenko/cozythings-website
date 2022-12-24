@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CozyThings.Services.Identity.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221223215930_FirstIdentityMigration")]
+    [Migration("20221224110607_FirstIdentityMigration")]
     partial class FirstIdentityMigration
     {
         /// <inheritdoc />
@@ -43,6 +43,12 @@ namespace CozyThings.Services.Identity.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
