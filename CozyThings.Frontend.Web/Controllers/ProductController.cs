@@ -23,7 +23,7 @@ namespace CozyThings.Frontend.Web.Controllers
             List<ProductDto> products = new();
 
             var responseDto = await productService.GetAllProductsAsync<ResponseDto>();
-            if (responseDto != null & responseDto.IsSuccess)
+            if (responseDto != null && responseDto.IsSuccess)
             {
                 products = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(responseDto.Result));
             }

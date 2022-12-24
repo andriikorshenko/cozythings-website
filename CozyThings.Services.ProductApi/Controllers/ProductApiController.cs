@@ -18,7 +18,7 @@ namespace CozyThings.Services.ProductApi.Controllers
             this.response = new ResponseDto();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<ResponseDto> Get()
         {
