@@ -19,7 +19,7 @@ builder.Services.AddAuthentication(options =>
     {
         options.Authority = builder.Configuration["ServiceUrls:IdentityApi"];
         options.GetClaimsFromUserInfoEndpoint = true;
-        options.ClientId = "mango";
+        options.ClientId = "cozythings";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
 
@@ -49,6 +49,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Product}/{action=Index}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
