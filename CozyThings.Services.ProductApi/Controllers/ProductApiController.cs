@@ -1,6 +1,7 @@
 ﻿using CozyThings.Services.ProductApi.Models;
 using CozyThings.Services.ProductApi.Models.Product;
 using CozyThings.Services.ProductApi.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CozyThings.Services.ProductApi.Controllers
@@ -17,6 +18,7 @@ namespace CozyThings.Services.ProductApi.Controllers
             this.response = new ResponseDto();
         }
 
+        //[Authorize]
         [HttpGet]
         public async Task<ResponseDto> Get()
         {
@@ -33,6 +35,7 @@ namespace CozyThings.Services.ProductApi.Controllers
             return response;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseDto> Get(int id)
         {
@@ -49,6 +52,7 @@ namespace CozyThings.Services.ProductApi.Controllers
             return response;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ResponseDto> Create([FromBody] ProductCreateDto dto)
         {
@@ -65,6 +69,7 @@ namespace CozyThings.Services.ProductApi.Controllers
             return response;
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<ResponseDto> Update([FromBody] ProductUpdateDto dto)
         {
@@ -81,6 +86,7 @@ namespace CozyThings.Services.ProductApi.Controllers
             return response;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<ResponseDto> Delete(int id)
         {

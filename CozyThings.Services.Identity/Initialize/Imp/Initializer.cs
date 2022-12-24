@@ -41,7 +41,7 @@ namespace CozyThings.Services.Identity.Initialize.Imp
                 LastName = "Norman"
             };
 
-            userManager.CreateAsync(adminUser, "admin1").GetAwaiter().GetResult();
+            userManager.CreateAsync(adminUser, "Admin123*").GetAwaiter().GetResult();
             userManager.AddToRoleAsync(adminUser, StaticDetails.ADMIN).GetAwaiter().GetResult();
 
             var admin1 = userManager.AddClaimsAsync(adminUser, new Claim[]
@@ -62,7 +62,7 @@ namespace CozyThings.Services.Identity.Initialize.Imp
                 LastName = "Petrov"
             };
 
-            userManager.CreateAsync(customerUser, "customer1").GetAwaiter().GetResult();
+            userManager.CreateAsync(customerUser, "Customer123*").GetAwaiter().GetResult();
             userManager.AddToRoleAsync(customerUser, StaticDetails.CUSTOMER).GetAwaiter().GetResult();
 
             var customer1 = userManager.AddClaimsAsync(customerUser, new Claim[]
