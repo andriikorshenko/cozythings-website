@@ -1,55 +1,60 @@
 ﻿@model CozyThings.Services.Identity.MainModule.Account.RegisterViewModel
 
 <div class="login-page">
-    <div class="lead">
+    <div class="lead text-center mt-5">
         <h1>Register</h1>
         <p>Choose how to register</p>
     </div>
 
     <partial name="_ValidationSummary" />
 
-    <div class="row">
+    <div class="row justify-content-center">
 
         <div class="col-sm-6">
             <div class="card">
-                <div class="card-header">
-                    <h2>Local Account Register</h2>
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">Local Account Register</h2>
                 </div>
 
                 <div class="card-body">
                     <form asp-route="Login">
                         <input type="hidden" asp-for="ReturnUrl" />
-
                         <div class="form-group">
                             <label asp-for="Username"></label>
-                            <input class="form-control" placeholder="username..." asp-for="Username" autofocus>
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <input class="form-control" placeholder="username..." asp-for="Username">
+                            <span asp-validation-for="Username" class="text-danger"></span>
                         </div>
+                        <hr class="my-1" />
                         <div class="form-group">
                             <label asp-for="Email"></label>
-                            <input class="form-control" placeholder="email..." asp-for="Email" autofocus>
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <input class="form-control" placeholder="email..." asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
+                        <hr class="my-1" />
                         <div class="form-group">
                             <label asp-for="FirstName"></label>
-                            <input class="form-control" placeholder="first name..." asp-for="FirstName" autofocus>
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <input class="form-control" placeholder="first name..." asp-for="FirstName">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
+                        <hr class="my-1" />
                         <div class="form-group">
                             <label asp-for="LastName"></label>
-                            <input class="form-control" placeholder="last name..." asp-for="LastName" autofocus>
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <input class="form-control" placeholder="last name..." asp-for="LastName">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
+                        <hr class="my-1" />
                         <div class="form-group">
                             <label asp-for="Password"></label>
-                            <input type="password" class="form-control" placeholder="password..." asp-for="Password" autocomplete="off">
+                            <input type="password" class="form-control" placeholder="password..." asp-for="Password" autocomplete="off" asp-validate-for="Password">
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
+                        <hr class="my-1" />
                         <div class="form-group">
                             <label asp-for="RoleName"></label>
-                            <select asp-for="RoleName" class="form-control" asp-items="@(new SelectList(ViewBag.message))"></select>
+                            <select asp-for="RoleName" class="form-control" asp-items="@(new SelectList(ViewBag.message))" asp-validate-for="RoleName"></select>
                             <span asp-validation-for="RoleName" class="text-danger"></span>
                         </div>
+                        <hr class="my-1" />
                         <button class="btn btn-primary" name="button" value="Register">Register</button>
                         <button class="btn btn-secondary" name="button" value="cancel">Cancel</button>
                     </form>
@@ -59,7 +64,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>

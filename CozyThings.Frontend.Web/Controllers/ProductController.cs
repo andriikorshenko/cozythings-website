@@ -19,7 +19,7 @@ namespace CozyThings.Frontend.Web.Controllers
             this.mapper = mapper;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> All()
         {
             List<ProductDto> products = new();
 
@@ -52,7 +52,7 @@ namespace CozyThings.Frontend.Web.Controllers
                 var responseDto = await productService.CreateProductAsync<ResponseDto>(product, accessToken);
                 if (responseDto != null & responseDto.IsSuccess)
                 {
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(All));
                 }
             }
             return View(model);
@@ -83,7 +83,7 @@ namespace CozyThings.Frontend.Web.Controllers
                 var responseDto = await productService.UpdateProductAsync<ResponseDto>(product, accessToken);
                 if (responseDto != null & responseDto.IsSuccess)
                 {
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(All));
                 }
             }
             return View(model);
@@ -96,7 +96,7 @@ namespace CozyThings.Frontend.Web.Controllers
             var responseDto = await productService.DeleteProductAsync<ResponseDto>(id, accessToken);
             if (responseDto != null && responseDto.IsSuccess) 
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(All));
             }
             return NotFound();
         }
