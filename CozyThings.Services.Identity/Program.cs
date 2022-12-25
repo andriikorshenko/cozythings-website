@@ -3,6 +3,8 @@ using CozyThings.Services.Identity.Data;
 using CozyThings.Services.Identity.Initialize;
 using CozyThings.Services.Identity.Initialize.Imp;
 using CozyThings.Services.Identity.Models;
+using CozyThings.Services.Identity.Services;
+using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IInitializer, Initializer>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
