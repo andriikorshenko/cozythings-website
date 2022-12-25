@@ -11,5 +11,7 @@
         public string CategoryName { get; init; } = string.Empty;
 
         public string ImageUrl { get; init; } = string.Empty;
+
+        public int Count { get; init; } = 1;
     }
 }

@@ -3,7 +3,6 @@ using CozyThings.Frontend.Web.Models;
 using CozyThings.Frontend.Web.Models.Product;
 using CozyThings.Frontend.Web.Services;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 

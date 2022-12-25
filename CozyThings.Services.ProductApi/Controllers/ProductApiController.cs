@@ -18,7 +18,6 @@ namespace CozyThings.Services.ProductApi.Controllers
             this.response = new ResponseDto();
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ResponseDto> Get()
         {
@@ -35,7 +34,6 @@ namespace CozyThings.Services.ProductApi.Controllers
             return response;
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ResponseDto> Get(int id)
         {

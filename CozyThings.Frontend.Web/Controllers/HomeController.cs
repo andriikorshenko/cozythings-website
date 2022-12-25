@@ -1,7 +1,11 @@
-﻿using CozyThings.Frontend.Web.Models;
+﻿using AutoMapper;
+using CozyThings.Frontend.Web.Models;
+using CozyThings.Frontend.Web.Models.Product;
+using CozyThings.Frontend.Web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace CozyThings.Frontend.Web.Controllers
@@ -9,20 +13,45 @@ namespace CozyThings.Frontend.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductService productService;
+        private readonly IMapper mapper;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger, 
+            IProductService productService, 
+            IMapper mapper)
         {
             _logger = logger;
+            this.productService = productService;
+            this.mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<ProductDto> products = new();
+
+            var responseDto = await productService.GetAllProductsAsync<ResponseDto>("");
+            if (responseDto != null && responseDto.IsSuccess)
+            {
+                products = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(responseDto.Result));
+            }
+            var list = mapper.Map<IReadOnlyList<ProductViewModel>>(products);
+            return View(list);
         }
 
-        public IActionResult Privacy()
+        [Authorize]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            ProductViewModel product = new();
+
+            var responseDto = await productService.GetProductByIdAsync<ResponseDto>(id, "");
+            if (responseDto != null && responseDto.IsSuccess)
+            {
+                var result = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(responseDto.Result));
+                product = mapper.Map<ProductViewModel>(result);                
+            }
+            return View(product);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -32,10 +61,8 @@ namespace CozyThings.Frontend.Web.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
-            var accessToken = await HttpContext.GetTokenAsync("access_token");
-
             return RedirectToAction(nameof(Index));
         }
 
