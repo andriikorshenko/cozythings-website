@@ -1,5 +1,6 @@
 ﻿using CozyThings.Frontend.Web.Models;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace CozyThings.Frontend.Web.Services.Imp
@@ -27,6 +28,12 @@ namespace CozyThings.Frontend.Web.Services.Imp
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data), 
                         Encoding.UTF8, "application/json");
+                }
+
+                if (!string.IsNullOrEmpty(apiRequest.AccessToken))
+                {
+                    client.DefaultRequestHeaders.Authorization = 
+                        new AuthenticationHeaderValue("Bearer", apiRequest.AccessToken);
                 }
 
                 switch (apiRequest.ApiType)

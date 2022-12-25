@@ -2,6 +2,8 @@
 using CozyThings.Frontend.Web.Models;
 using CozyThings.Frontend.Web.Models.Product;
 using CozyThings.Frontend.Web.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -22,7 +24,8 @@ namespace CozyThings.Frontend.Web.Controllers
         {
             List<ProductDto> products = new();
 
-            var responseDto = await productService.GetAllProductsAsync<ResponseDto>();
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var responseDto = await productService.GetAllProductsAsync<ResponseDto>(accessToken);
             if (responseDto != null && responseDto.IsSuccess)
             {
                 products = JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(responseDto.Result));
@@ -46,7 +49,8 @@ namespace CozyThings.Frontend.Web.Controllers
             if (ModelState.IsValid)
             {
                 var product = mapper.Map<ProductCreateDto>(model);
-                var responseDto = await productService.CreateProductAsync<ResponseDto>(product);
+                var accessToken = await HttpContext.GetTokenAsync("access_token");
+                var responseDto = await productService.CreateProductAsync<ResponseDto>(product, accessToken);
                 if (responseDto != null & responseDto.IsSuccess)
                 {
                     return RedirectToAction(nameof(Index));
@@ -57,7 +61,8 @@ namespace CozyThings.Frontend.Web.Controllers
 
         public async Task<IActionResult> Update(int id)
         {
-            var responseDto = await productService.GetProductByIdAsync<ResponseDto>(id);
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var responseDto = await productService.GetProductByIdAsync<ResponseDto>(id, accessToken);
             if (responseDto == null)
             {
                 return NotFound();
@@ -69,13 +74,15 @@ namespace CozyThings.Frontend.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(ProductViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var product = mapper.Map<ProductUpdateDto>(model);
-                var responseDto = await productService.UpdateProductAsync<ResponseDto>(product);
+                var accessToken = await HttpContext.GetTokenAsync("access_token");
+                var responseDto = await productService.UpdateProductAsync<ResponseDto>(product, accessToken);
                 if (responseDto != null & responseDto.IsSuccess)
                 {
                     return RedirectToAction(nameof(Index));
@@ -87,7 +94,8 @@ namespace CozyThings.Frontend.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var responseDto = await productService.DeleteProductAsync<ResponseDto>(id);
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var responseDto = await productService.DeleteProductAsync<ResponseDto>(id, accessToken);
             if (responseDto != null && responseDto.IsSuccess) 
             {
                 return RedirectToAction(nameof(Index));
