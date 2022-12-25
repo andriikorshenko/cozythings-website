@@ -74,7 +74,6 @@ namespace CozyThings.Frontend.Web.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(ProductViewModel model)
         {

@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IInitializer, Initializer>();
-builder.Services.AddScoped<IProfileService, ProfileService>();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
@@ -33,6 +32,8 @@ builder.Services.AddIdentityServer(options =>
 .AddInMemoryClients(StaticDetails.CLients)
 .AddAspNetIdentity<ApplicationUser>()
 .AddDeveloperSigningCredential();
+
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 var app = builder.Build();
 
