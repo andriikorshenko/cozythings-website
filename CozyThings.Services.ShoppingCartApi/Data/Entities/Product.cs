@@ -1,19 +1,23 @@
-﻿using CozyThings.Services.ProductApi.Data.Abstractions;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace CozyThings.Services.ShoppingCartApi.Data.Entities
 {
-    public class Product : Entity
+    public class Product
     {
-        public string Name { get; set; } 
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ProductId { get; set; }
 
-        public double Price { get; set; } 
+        [Required]
+        public string Name { get; set; }
+
+        [Range(1, 1000)]
+        public double Price { get; set; }
 
         public string Description { get; set; }
 
         public string CategoryName { get; set; }
 
         public string ImageUrl { get; set; }
-
-        public int Count { get; set; }
     }
 }

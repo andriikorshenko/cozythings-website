@@ -1,4 +1,5 @@
 ﻿using CozyThings.Services.ProductApi.Data.Abstractions;
+using System.ComponentModel.DataAnnotations;
 
 namespace CozyThings.Services.ShoppingCartApi.Data.Entities
 {

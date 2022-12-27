@@ -6,7 +6,7 @@
 
 <br />
 <br />
-<div class="container p-4 border w-60">
+<div class="container col-11">
     <div class="row pb-2">
         <div class="col">
             <h1 class="text-primary">
@@ -59,7 +59,7 @@
             </div>
             <div class="col-5 offset-2">
 
-                <a asp-action="Index" class="btn-primary btn form-control ">Back to List</a>
+                <a asp-controller="Product" asp-action="All" class="btn-primary btn form-control ">Back to List</a>
             </div>
             <div class="col-5">
                 <input type="submit" value=@(isUpdate ? "Update" : "Create") class="btn btn-success form-control" />

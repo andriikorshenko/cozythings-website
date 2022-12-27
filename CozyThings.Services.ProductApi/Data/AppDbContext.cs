@@ -24,7 +24,7 @@ namespace CozyThings.Services.ProductApi.Data
                 Name = "Ultra Comfy X-Model",
                 Price = 99.98,
                 Description = "Some unique description #1...",
-                ImageUrl = "https://cozythings.blob.core.windows.net/cozythings/BCN__courtesy_Knoll.jpg",
+                ImageUrl = "https://cozythings.blob.core.windows.net/cozythings/chair-1.jpg",
                 CategoryName = "Chairs"
             });
             modelBuilder.Entity<Product>().HasData(new Product
@@ -33,7 +33,7 @@ namespace CozyThings.Services.ProductApi.Data
                 Name = "Mega Comfy Y-Model",
                 Price = 1099.98,
                 Description = "Some unique description #2...",
-                ImageUrl = "https://cozythings.blob.core.windows.net/cozythings/20-12-2022%2018-24-48.jpg",
+                ImageUrl = "https://cozythings.blob.core.windows.net/cozythings/sofa-1.jpg",
                 CategoryName = "Sofas"
             });
             modelBuilder.Entity<Product>().HasData(new Product
@@ -42,16 +42,7 @@ namespace CozyThings.Services.ProductApi.Data
                 Name = "Super Comfy M-Model",
                 Price = 999.98,
                 Description = "Some unique description #3...",
-                ImageUrl = "https://cozythings.blob.core.windows.net/cozythings/table-de-repas-design-bois-%C2%A9-17.jpg",
-                CategoryName = "Tables"
-            });
-            modelBuilder.Entity<Product>().HasData(new Product
-            {
-                Id = 14,
-                Name = "Giga Comfy R-Model",
-                Price = 1299.98,
-                Description = "Some unique description #4...",
-                ImageUrl = "https://cozythings.blob.core.windows.net/cozythings/1580774388-16629622_master.jpg",
+                ImageUrl = "https://cozythings.blob.core.windows.net/cozythings/table-1.jpg",
                 CategoryName = "Tables"
             });
         }

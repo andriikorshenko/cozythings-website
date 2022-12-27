@@ -1,12 +1,16 @@
 ﻿@model IEnumerable<ProductViewModel>
 
+@{
+    ViewBag.Title = "Home";
+}
+
+<br />
+<br />
 <form>
     <div class="container row">
         @foreach (var item in Model)
         {
-
-
-            <div class="col-4 ">
+            <div class="col-4">
                 <div class="p-0 my-3 border">
                     <div class="card">
                         <img src="@item.ImageUrl" class="card-img-top">
