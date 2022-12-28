@@ -1,8 +1,8 @@
-﻿using CozyThings.Services.ShoppingCartApi.Data.Entities;
+﻿using CozyThings.Services.ShoppingCartApi.Models;
 
-namespace CozyThings.Services.ShoppingCartApi.Models
+namespace CozyThings.Services.ShoppingCartApi.Data.Entities
 {
-    public class CartDto
+    public class Cart
     {
         public CartHeaderDto CartHeader { get; set; }
 
