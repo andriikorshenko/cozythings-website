@@ -1,6 +1,8 @@
 using AutoMapper;
 using CozyThings.Services.ShoppingCartApi;
 using CozyThings.Services.ShoppingCartApi.Data;
+using CozyThings.Services.ShoppingCartApi.Repository;
+using CozyThings.Services.ShoppingCartApi.Repository.Imp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +11,9 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
