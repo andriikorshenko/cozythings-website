@@ -11,10 +11,10 @@ namespace CozyThings.Services.ShoppingCartApi.Controllers
         private readonly ICartRepository cartRepository;
         private readonly ResponseDto responseDto;
 
-        public CartController(ICartRepository cartRepository, ResponseDto responseDto)
+        public CartController(ICartRepository cartRepository)
         {
             this.cartRepository = cartRepository;
-            this.responseDto = responseDto;
+            responseDto = new();
         }
 
         [HttpGet("GetCart/{userId}")]
@@ -33,7 +33,7 @@ namespace CozyThings.Services.ShoppingCartApi.Controllers
             return responseDto;
         }
 
-        [HttpGet("AddCart")]
+        [HttpPost("AddCart")]
         public async Task<object> AddCart(CartDto dto)
         {
             try

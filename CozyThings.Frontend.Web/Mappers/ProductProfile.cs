@@ -8,7 +8,7 @@ namespace CozyThings.Frontend.Web.Mapper
     {
         public ProductProfile()
         {
-            CreateMap<ProductDto, ProductViewModel>();
+            CreateMap<ProductDto, ProductViewModel>().ReverseMap();
             CreateMap<ProductViewModel, ProductCreateDto>();
             CreateMap<ProductViewModel, ProductUpdateDto>();
         }

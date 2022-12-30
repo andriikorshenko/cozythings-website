@@ -13,6 +13,7 @@ namespace CozyThings.Frontend.Web.Services.Imp
         public BaseService(IHttpClientFactory httpClientFactory)
         {
             this.httpClientFactory = httpClientFactory;
+            responseDto = new ResponseDto();
         }          
 
         public async Task<T> SendAsync<T>(ApiRequest apiRequest)
@@ -20,6 +21,7 @@ namespace CozyThings.Frontend.Web.Services.Imp
             try
             {
                 var client = httpClientFactory.CreateClient("CozyThingsApi");
+
                 HttpRequestMessage message = new();
                 message.Headers.Add("Accept", "application/json");
                 message.RequestUri = new Uri(apiRequest.Url);

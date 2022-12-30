@@ -1,4 +1,5 @@
 using CozyThings.Services.ProductApi.Data;
+using CozyThings.Services.ProductApi.Models;
 using CozyThings.Services.ProductApi.Repository;
 using CozyThings.Services.ProductApi.Repository.Imp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
