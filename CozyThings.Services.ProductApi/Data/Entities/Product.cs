@@ -17,7 +17,5 @@ namespace CozyThings.Services.ProductApi.Data.Entities
         public string CategoryName { get; set; }
 
         public string ImageUrl { get; set; }
-
-        public int Count { get; set; }
     }
 }

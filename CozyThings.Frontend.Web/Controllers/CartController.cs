@@ -46,5 +46,18 @@ namespace CozyThings.Frontend.Web.Controllers
             }
             return cartDto;
         }
+
+        public async Task<IActionResult> Remove(int cartDetailsId)
+        {
+            var userId = User.Claims.Where(x => x.Type == "sub")?.FirstOrDefault()?.Value;
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var response = await cartService.DeleteCartAsync<ResponseDto>(cartDetailsId, accessToken);
+
+            if (response != null && response.IsSuccess)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
     }
 }

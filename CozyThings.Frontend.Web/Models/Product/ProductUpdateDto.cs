@@ -14,6 +14,6 @@
 
         public string ImageUrl { get; init; } = string.Empty;
 
-        public int Count { get; init; }
+        public int Count { get; init; } = 1;
     }
 }
