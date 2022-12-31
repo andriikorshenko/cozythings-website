@@ -112,7 +112,7 @@ namespace CozyThings.Services.ShoppingCartApi.Repository.Imp
                 await dbContext.SaveChangesAsync();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }            
