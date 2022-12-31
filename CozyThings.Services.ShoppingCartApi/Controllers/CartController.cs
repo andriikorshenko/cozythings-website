@@ -1,4 +1,5 @@
 ﻿using CozyThings.Services.ShoppingCartApi.Models;
+using CozyThings.Services.ShoppingCartApi.Models.Cart;
 using CozyThings.Services.ShoppingCartApi.Repository;
 using Microsoft.AspNetCore.Mvc;
 

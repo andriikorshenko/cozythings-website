@@ -1,7 +1,7 @@
 ﻿using CozyThings.Services.ProductApi.Data.Abstractions;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CozyThings.Services.ShoppingCartApi.Data.Entities
+namespace CozyThings.Services.ShoppingCartApi.Data.Entities.Cart
 {
     public class CartDetails : Entity
     {

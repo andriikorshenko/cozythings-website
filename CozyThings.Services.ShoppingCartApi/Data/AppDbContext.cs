@@ -1,4 +1,5 @@
 ﻿using CozyThings.Services.ShoppingCartApi.Data.Entities;
+using CozyThings.Services.ShoppingCartApi.Data.Entities.Cart;
 using Microsoft.EntityFrameworkCore;
 
 namespace CozyThings.Services.ShoppingCartApi.Data

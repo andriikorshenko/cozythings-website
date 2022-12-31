@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using CozyThings.Services.ShoppingCartApi.Data.Entities;
+using CozyThings.Services.ShoppingCartApi.Data.Entities.Cart;
 using CozyThings.Services.ShoppingCartApi.Models;
+using CozyThings.Services.ShoppingCartApi.Models.Cart;
 
 namespace CozyThings.Services.ShoppingCartApi
 {

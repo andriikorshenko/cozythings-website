@@ -6,7 +6,7 @@ namespace CozyThings.Services.ShoppingCartApi.Data.Entities
     public class Product
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }

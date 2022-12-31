@@ -1,11 +1,10 @@
 ﻿using CozyThings.Services.ProductApi.Data.Abstractions;
+using System.ComponentModel.DataAnnotations;
 
-namespace CozyThings.Services.ShoppingCartApi.Models
-{ 
-    public class CartHeaderDto 
+namespace CozyThings.Services.ShoppingCartApi.Data.Entities.Cart
+{
+    public class CartHeader : Entity
     {
-        public int Id { get; set; }
-
         public string UserId { get; set; }
 
         public string CouponCode { get; set; }

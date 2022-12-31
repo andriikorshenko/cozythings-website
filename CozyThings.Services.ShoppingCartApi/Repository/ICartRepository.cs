@@ -1,4 +1,4 @@
-﻿using CozyThings.Services.ShoppingCartApi.Models;
+﻿using CozyThings.Services.ShoppingCartApi.Models.Cart;
 
 namespace CozyThings.Services.ShoppingCartApi.Repository
 {

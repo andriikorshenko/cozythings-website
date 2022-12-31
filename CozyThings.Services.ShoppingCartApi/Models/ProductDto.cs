@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace CozyThings.Services.ShoppingCartApi.Models
+﻿namespace CozyThings.Services.ShoppingCartApi.Models
 {
     public class ProductDto
     {

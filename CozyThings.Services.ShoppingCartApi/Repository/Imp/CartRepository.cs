@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CozyThings.Services.ShoppingCartApi.Data;
-using CozyThings.Services.ShoppingCartApi.Data.Entities;
-using CozyThings.Services.ShoppingCartApi.Models;
+using CozyThings.Services.ShoppingCartApi.Data.Entities.Cart;
+using CozyThings.Services.ShoppingCartApi.Models.Cart;
 using Microsoft.EntityFrameworkCore;
 
 namespace CozyThings.Services.ShoppingCartApi.Repository.Imp
@@ -35,7 +35,7 @@ namespace CozyThings.Services.ShoppingCartApi.Repository.Imp
         {
             var cart = mapper.Map<Cart>(dto);
 
-            var entity = await dbContext.Products.FirstOrDefaultAsync(x => x.ProductId == dto.CartDetails.FirstOrDefault().ProductId);
+            var entity = await dbContext.Products.FirstOrDefaultAsync(x => x.Id == dto.CartDetails.FirstOrDefault().ProductId);
             if (entity == null)
             {
                 dbContext.Products.Add(cart.CartDetails.FirstOrDefault().Product);

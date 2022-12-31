@@ -1,6 +1,6 @@
 ﻿using CozyThings.Services.ShoppingCartApi.Models;
 
-namespace CozyThings.Services.ShoppingCartApi.Data.Entities
+namespace CozyThings.Services.ShoppingCartApi.Data.Entities.Cart
 {
     public class Cart
     {
