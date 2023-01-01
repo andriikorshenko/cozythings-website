@@ -16,6 +16,7 @@ namespace CozyThings.Services.CouponApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("dbo")
                 .HasAnnotation("ProductVersion", "7.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -37,7 +38,21 @@ namespace CozyThings.Services.CouponApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Coupons");
+                    b.ToTable("Coupons", "dbo");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CouponCode = "10OFF",
+                            DiscountAmount = 10.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CouponCode = "20OFF",
+                            DiscountAmount = 20.0
+                        });
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,8 @@
 using AutoMapper;
 using CozyThings.Services.CouponApi;
 using CozyThings.Services.CouponApi.Data;
+using CozyThings.Services.CouponApi.Repository;
+using CozyThings.Services.CouponApi.Repository.Imp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -12,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<ICouponRepository, CouponRepository>();
 
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
