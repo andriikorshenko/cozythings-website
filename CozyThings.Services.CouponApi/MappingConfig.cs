@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CozyThings.Services.CouponApi.Data.Entities;
+using CozyThings.Services.CouponApi.Models;
 
 namespace CozyThings.Services.CouponApi
 {
@@ -8,10 +10,7 @@ namespace CozyThings.Services.CouponApi
         {
             var mappingConfig = new MapperConfiguration(config =>
             {
-                /*config.CreateMap<ProductDto, Product>().ReverseMap();
-                config.CreateMap<CartHeader, CartHeaderDto>().ReverseMap();
-                config.CreateMap<CartDetails, CartDetailsDto>().ReverseMap();
-                config.CreateMap<Cart, CartDto>().ReverseMap();*/
+                config.CreateMap<CouponDto, Coupon>().ReverseMap();
             });
 
             return mappingConfig;

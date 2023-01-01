@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CozyThings.Services.CouponApi.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CozyThings.Services.CouponApi.Data
 {
@@ -7,6 +8,6 @@ namespace CozyThings.Services.CouponApi.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
 
-
+        public DbSet<Coupon> Coupons { get; set; }
     }
 }

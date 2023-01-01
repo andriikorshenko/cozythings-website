@@ -1,4 +1,6 @@
 using AutoMapper;
+using CozyThings.Services.CouponApi;
+using CozyThings.Services.CouponApi.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -50,7 +52,6 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey,
         Scheme = JwtBearerDefaults.AuthenticationScheme
     });
-
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {

@@ -54,7 +54,6 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey,
         Scheme = JwtBearerDefaults.AuthenticationScheme
     });
-
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
