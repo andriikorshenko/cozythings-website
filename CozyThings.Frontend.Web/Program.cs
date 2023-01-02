@@ -6,10 +6,15 @@ using Microsoft.AspNetCore.Authentication;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddHttpClient<IProductService, ProductService>();
 builder.Services.AddHttpClient<ICartService, CartService>();
+builder.Services.AddHttpClient<ICouponService, CouponService>();
+
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<ICouponService, CouponService>();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddAuthentication(options =>
@@ -35,6 +40,7 @@ builder.Services.AddAuthentication(options =>
 
 StaticDetails.ProductApiBase = builder.Configuration["ServiceUrls:ProductApi"];
 StaticDetails.ShoppingCartApiBase = builder.Configuration["ServiceUrls:ShoppingCartApi"];
+StaticDetails.CouponApiBase = builder.Configuration["ServiceUrls:CouponApi"];
 
 var app = builder.Build();
 
