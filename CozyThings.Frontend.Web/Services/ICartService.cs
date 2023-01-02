@@ -10,6 +10,10 @@ namespace CozyThings.Frontend.Web.Services
 
         Task<T> UpdateCartAsync<T>(CartDto cartDto, string token = null);
 
+        Task<T> ApplyCouponAsync<T>(CartDto cartDto, string token = null);
+
+        Task<T> RemoveCouponAsync<T>(string userId, string token = null);
+
         Task<T> DeleteCartAsync<T>(int cartId, string token = null);    
     }
 }

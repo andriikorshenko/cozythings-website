@@ -53,6 +53,28 @@ namespace CozyThings.Frontend.Web.Services.Imp
                 Url = StaticDetails.ShoppingCartApiBase + "/api/cart/RemoveCart",
                 AccessToken = token
             });
-        }  
+        }
+
+        public async Task<T> ApplyCouponAsync<T>(CartDto cartDto, string token = null)
+        {
+            return await this.SendAsync<T>(new ApiRequest
+            {
+                ApiType = ApiType.POST,
+                Data = cartDto,
+                Url = StaticDetails.ShoppingCartApiBase + "/api/cart/ApplyCoupon",
+                AccessToken = token
+            });
+        }
+
+        public async Task<T> RemoveCouponAsync<T>(string userId, string token = null)
+        {
+            return await this.SendAsync<T>(new ApiRequest
+            {
+                ApiType = ApiType.POST,
+                Data = userId,
+                Url = StaticDetails.ShoppingCartApiBase + "/api/cart/RemoveCoupon",
+                AccessToken = token
+            });
+        }
     }
 }
