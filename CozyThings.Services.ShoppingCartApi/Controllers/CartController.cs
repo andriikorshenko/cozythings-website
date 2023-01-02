@@ -81,5 +81,38 @@ namespace CozyThings.Services.ShoppingCartApi.Controllers
             }
             return responseDto;
         }
+
+        [HttpPost("ApplyCoupon")]
+        public async Task<object> ApplyCoupon([FromBody] CartDto cartDto)
+        {
+            try
+            {
+                var isSuccess = await cartRepository.ApplyCoupon(cartDto.CartHeader.UserId,
+                    cartDto.CartHeader.CouponCode);
+                responseDto.Result = isSuccess;
+            }
+            catch (Exception ex)
+            {
+                responseDto.IsSuccess = false;
+                responseDto.ErrorMessages = new List<string>() { ex.ToString() };
+            }
+            return responseDto;
+        }
+
+        [HttpPost("RemoveCoupon")]
+        public async Task<object> RemoveCoupon([FromBody] string userId)
+        {
+            try
+            {
+                var isSuccess = await cartRepository.RemoveCoupon(userId);
+                responseDto.Result = isSuccess;
+            }
+            catch (Exception ex)
+            {
+                responseDto.IsSuccess = false;
+                responseDto.ErrorMessages = new List<string>() { ex.ToString() };
+            }
+            return responseDto;
+        }
     }
 }

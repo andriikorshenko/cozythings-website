@@ -116,6 +116,24 @@ namespace CozyThings.Services.ShoppingCartApi.Repository.Imp
             {
                 return false;
             }            
-        }        
+        }
+
+        public async Task<bool> ApplyCoupon(string userId, string couponCode)
+        {
+            var cartFromDb = await dbContext.CartHeaders.FirstOrDefaultAsync(x => x.UserId == userId);  
+            cartFromDb.CouponCode = couponCode; 
+            dbContext.Update(cartFromDb);
+            await dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> RemoveCoupon(string userId)
+        {
+            var cartFromDb = await dbContext.CartHeaders.FirstOrDefaultAsync(x => x.UserId == userId);
+            cartFromDb.CouponCode = string.Empty;
+            dbContext.Update(cartFromDb);
+            await dbContext.SaveChangesAsync();
+            return true;
+        }
     }
 }
