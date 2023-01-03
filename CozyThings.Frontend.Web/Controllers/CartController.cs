@@ -10,11 +10,15 @@ namespace CozyThings.Frontend.Web.Controllers
     {
         private readonly IProductService productService;
         private readonly ICartService cartService;
+        private readonly ICouponService couponService;
 
-        public CartController(IProductService productService, ICartService cartService)
+        public CartController(IProductService productService, 
+            ICartService cartService,
+            ICouponService couponService)
         {
             this.productService = productService;
             this.cartService = cartService;
+            this.couponService = couponService;
         }
 
         public async Task<IActionResult> Index()
@@ -67,10 +71,22 @@ namespace CozyThings.Frontend.Web.Controllers
 
             if (cartDto.CartHeader != null)
             {
+                if (!string.IsNullOrEmpty(cartDto.CartHeader.CouponCode))
+                {
+                    var coupon = await couponService.GetCouponAsync<ResponseDto>(cartDto.CartHeader.CouponCode, accessToken);
+                    if (coupon != null && coupon.IsSuccess)
+                    {
+                        var couponObj = JsonConvert.DeserializeObject<CouponDto>(Convert.ToString(response.Result));
+                        cartDto.CartHeader.DiscountTotal = couponObj.DiscountAmount;
+                    }
+                }
+
                 foreach (var item in cartDto.CartDetails)
                 {
                     cartDto.CartHeader.OrderTotal += (item.Product.Price * item.Count);
                 }
+
+                cartDto.CartHeader.OrderTotal -= cartDto.CartHeader.DiscountTotal;
             }
             return cartDto;
         }
