@@ -103,5 +103,11 @@ namespace CozyThings.Frontend.Web.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Chackout()
+        {
+            return View(await LoadCartDtoBasedOnLoggedInUser());
+        }
     }
 }
