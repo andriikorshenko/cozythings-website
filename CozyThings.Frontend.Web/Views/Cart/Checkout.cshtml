@@ -120,3 +120,18 @@
 
 }
 
+@section styles
+{
+    <link href="@Url.Content("~/lib/tempus-dominus/css/tempus-dominus.min.css")" rel="stylesheet" type="text/css"/>
+}
+ 
+@section Scripts
+{
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/tempus-dominus/js/tempus-dominus.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      const datetimepicker1 = new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'));
+    });
+    </script>
+}
