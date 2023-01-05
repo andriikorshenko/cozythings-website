@@ -109,5 +109,28 @@ namespace CozyThings.Frontend.Web.Controllers
         {
             return View(await LoadCartDtoBasedOnLoggedInUser());
         }
+
+        [HttpPost("Checkout")]
+        public async Task<IActionResult> Chackout(CartDto cartDto)
+        {
+            try
+            {
+                var accessToken = await HttpContext.GetTokenAsync("access_token");
+                var response = await cartService.Checkout<ResponseDto>(cartDto.CartHeader, accessToken);
+               
+                return RedirectToAction(nameof(Confirmation));
+            }
+            catch (Exception ex)
+            {
+
+                return View(cartDto);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Confirmation()
+        {
+            return View();
+        }
     }
 }
