@@ -14,6 +14,9 @@ namespace CozyThings.Frontend.Web.Services
 
         Task<T> RemoveCouponAsync<T>(string userId, string token = null);
 
-        Task<T> DeleteCartAsync<T>(int cartId, string token = null);    
+        Task<T> DeleteCartAsync<T>(int cartId, string token = null);
+
+        Task<T> Checkout<T>(CartHeaderDto cartHeaderDto, string token = null);
+
     }
 }

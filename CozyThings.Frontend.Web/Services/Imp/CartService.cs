@@ -76,5 +76,16 @@ namespace CozyThings.Frontend.Web.Services.Imp
                 AccessToken = token
             });
         }
+
+        public async Task<T> Checkout<T>(CartHeaderDto cartHeaderDto, string token = null)
+        {
+            return await this.SendAsync<T>(new ApiRequest
+            {
+                ApiType = ApiType.POST,
+                Data = cartHeaderDto,
+                Url = StaticDetails.ShoppingCartApiBase + "/api/cart/checkout",
+                AccessToken = token
+            });
+        }
     }
 }

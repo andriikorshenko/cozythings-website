@@ -1,4 +1,5 @@
-﻿using CozyThings.Services.ShoppingCartApi.Models;
+﻿using CozyThings.Services.ShoppingCartApi.Message;
+using CozyThings.Services.ShoppingCartApi.Models;
 using CozyThings.Services.ShoppingCartApi.Models.Cart;
 using CozyThings.Services.ShoppingCartApi.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -106,6 +107,26 @@ namespace CozyThings.Services.ShoppingCartApi.Controllers
             {
                 var isSuccess = await cartRepository.RemoveCoupon(userId);
                 responseDto.Result = isSuccess;
+            }
+            catch (Exception ex)
+            {
+                responseDto.IsSuccess = false;
+                responseDto.ErrorMessages = new List<string>() { ex.ToString() };
+            }
+            return responseDto;
+        }
+
+        [HttpPost("Checkout")]
+        public async Task<object> Checkout(CheckoutHeaderDto checkoutHeaderDto)
+        {
+            try
+            {
+                CartDto cartDto = await cartRepository.GetCartByUserId(checkoutHeaderDto.UserId);
+                if (cartDto == null)
+                {
+                    return BadRequest();
+                }
+                checkoutHeaderDto.CartDetails = cartDto.CartDetails;                
             }
             catch (Exception ex)
             {
