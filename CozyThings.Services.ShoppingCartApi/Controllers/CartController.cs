@@ -1,4 +1,5 @@
-﻿using CozyThings.Services.ShoppingCartApi.Message;
+﻿using CozyThings.Integration.MessageBus.Services;
+using CozyThings.Services.ShoppingCartApi.Message;
 using CozyThings.Services.ShoppingCartApi.Models;
 using CozyThings.Services.ShoppingCartApi.Models.Cart;
 using CozyThings.Services.ShoppingCartApi.Repository;
@@ -11,11 +12,13 @@ namespace CozyThings.Services.ShoppingCartApi.Controllers
     public class CartController : Controller
     {
         private readonly ICartRepository cartRepository;
+        private readonly IMessageBus messageBus;
         private readonly ResponseDto responseDto;
 
-        public CartController(ICartRepository cartRepository)
+        public CartController(ICartRepository cartRepository, IMessageBus messageBus)
         {
             this.cartRepository = cartRepository;
+            this.messageBus = messageBus;
             responseDto = new();
         }
 
@@ -126,7 +129,8 @@ namespace CozyThings.Services.ShoppingCartApi.Controllers
                 {
                     return BadRequest();
                 }
-                checkoutHeaderDto.CartDetails = cartDto.CartDetails;                
+                checkoutHeaderDto.CartDetails = cartDto.CartDetails;
+                await messageBus.PublishMessage(checkoutHeaderDto, "checkoutmessagetopic");
             }
             catch (Exception ex)
             {

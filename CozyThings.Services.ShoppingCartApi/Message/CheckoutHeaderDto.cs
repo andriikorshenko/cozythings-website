@@ -1,8 +1,9 @@
-﻿using CozyThings.Services.ShoppingCartApi.Models.Cart;
+﻿using CozyThings.Integration.MessageBus;
+using CozyThings.Services.ShoppingCartApi.Models.Cart;
 
 namespace CozyThings.Services.ShoppingCartApi.Message
 {
-    public class CheckoutHeaderDto
+    public class CheckoutHeaderDto : BaseMessage
     {
         public int Id { get; set; }
 

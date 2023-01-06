@@ -6,11 +6,12 @@ namespace CozyThings.Integration.MessageBus
     {
         public static string GetConnectionString()
         {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json"), optional: false)
-                .Build();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfiguration configuration = builder.Build();
 
-            return configuration.GetSection("AppSettings").GetSection("ConnectionString").Value!;
+            return configuration.GetConnectionString("AzureServiceBus");
         }
     }
 }

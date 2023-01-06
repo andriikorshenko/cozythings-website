@@ -110,7 +110,7 @@ namespace CozyThings.Frontend.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Chackout(CartDto cartDto)
+        public async Task<IActionResult> Checkout(CartDto cartDto)
         {
             try
             {

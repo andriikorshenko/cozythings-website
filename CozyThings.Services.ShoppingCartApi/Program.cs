@@ -1,4 +1,6 @@
 using AutoMapper;
+using CozyThings.Integration.MessageBus.Services;
+using CozyThings.Integration.MessageBus.Services.Imp;
 using CozyThings.Services.ShoppingCartApi;
 using CozyThings.Services.ShoppingCartApi.Data;
 using CozyThings.Services.ShoppingCartApi.Repository;
@@ -15,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
 
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
