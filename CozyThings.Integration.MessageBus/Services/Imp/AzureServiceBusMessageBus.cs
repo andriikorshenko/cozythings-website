@@ -7,7 +7,7 @@ namespace CozyThings.Integration.MessageBus.Services.Imp
 {
     public class AzureServiceBusMessageBus : IMessageBus
     {
-        private string connectionString = @"Endpoint=sb://cozythings.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=W8Y8N3oJVEktw0FFY13ZAik0gBb3KnqrX1h/+E5z6cI=";
+        private string connectionString = AppConfig.GetConnectionString();
 
         public async Task PublishMessage(BaseMessage baseMessage, string topicName)
         {
