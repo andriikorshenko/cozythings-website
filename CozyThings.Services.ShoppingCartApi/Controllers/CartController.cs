@@ -20,7 +20,7 @@ namespace CozyThings.Services.ShoppingCartApi.Controllers
         }
 
         [HttpGet("GetCart/{userId}")]
-        public async Task<object> GetCall(string userId)
+        public async Task<object> GetCart(string userId)
         {
             try
             {

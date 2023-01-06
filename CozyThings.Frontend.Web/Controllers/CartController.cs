@@ -104,13 +104,12 @@ namespace CozyThings.Frontend.Web.Controllers
             return View();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Chackout()
+        public async Task<IActionResult> Checkout()
         {
             return View(await LoadCartDtoBasedOnLoggedInUser());
         }
 
-        [HttpPost("Checkout")]
+        [HttpPost]
         public async Task<IActionResult> Chackout(CartDto cartDto)
         {
             try
@@ -127,7 +126,6 @@ namespace CozyThings.Frontend.Web.Controllers
             }
         }
 
-        [HttpGet]
         public IActionResult Confirmation()
         {
             return View();
