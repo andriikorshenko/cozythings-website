@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.ServiceBus;
-using Microsoft.Azure.ServiceBus.Core;
+﻿using Azure.Messaging.ServiceBus;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -12,17 +11,19 @@ namespace CozyThings.Integration.MessageBus.Services.Imp
 
         public async Task PublishMessage(BaseMessage baseMessage, string topicName)
         {
-            ISenderClient senderClient = new TopicClient(connectionString, topicName);
+            await using var client = new ServiceBusClient(connectionString);
+
+            ServiceBusSender sender = client.CreateSender(topicName);
 
             var jsonMessage = JsonConvert.SerializeObject(baseMessage);
-            var finalMessage = new Message(Encoding.UTF8.GetBytes(jsonMessage))
+            ServiceBusMessage finalMessage = new ServiceBusMessage(Encoding.UTF8.GetBytes(jsonMessage))
             {
                 CorrelationId = Guid.NewGuid().ToString()
             };
 
-            await senderClient.SendAsync(finalMessage);
+            await sender.SendMessageAsync(finalMessage);
 
-            await senderClient.CloseAsync();
+            await client.DisposeAsync();
         }
     }
 }
