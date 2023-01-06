@@ -1,4 +1,4 @@
-﻿namespace CozyThings.Integration.MessageBus
+﻿namespace CozyThings.Integration.MessageBus.Services
 {
     public interface IMessageBus
     {
