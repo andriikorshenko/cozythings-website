@@ -1,3 +1,5 @@
+using AutoMapper;
+using CozyThings.Services.OrderApi;
 using CozyThings.Services.OrderApi.Data;
 using CozyThings.Services.OrderApi.Repository.Imp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,9 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-/*IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());*/
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var optionBuilder = new DbContextOptionsBuilder<AppDbContext>();
 optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

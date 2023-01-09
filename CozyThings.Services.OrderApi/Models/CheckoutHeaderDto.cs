@@ -30,6 +30,6 @@
 
         public int CartTotalItems { get; set; }
 
-        public IEnumerable<CartDetailsDto> CartDetails { get; set; }
+        public List<CartDetailsDto> CartDetails { get; set; }
     }
 }
