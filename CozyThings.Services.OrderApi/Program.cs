@@ -1,5 +1,5 @@
-using AutoMapper;
 using CozyThings.Services.OrderApi.Data;
+using CozyThings.Services.OrderApi.Repository.Imp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -11,14 +11,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddScoped<ICouponRepository, CouponRepository>();
-
 /*IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());*/
 
-builder.Services.AddDbContext<AppDbContext>(options
-    => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+var optionBuilder = new DbContextOptionsBuilder<AppDbContext>();
+optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddSingleton(new OrderRepository(optionBuilder.Options));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
