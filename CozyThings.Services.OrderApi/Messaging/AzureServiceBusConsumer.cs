@@ -10,13 +10,25 @@ namespace CozyThings.Services.OrderApi.Messaging
 {
     public class AzureServiceBusConsumer
     {
+        private readonly string serviceBusConnectionString;
+        private readonly string subscriptionName;
+        private readonly string checkoutMessageTopic;
         private readonly OrderRepository orderRepository;
         private readonly IMapper mapper;
+        private readonly IConfiguration configuration;
 
-        public AzureServiceBusConsumer(OrderRepository orderRepository, IMapper mapper)
+        public AzureServiceBusConsumer(
+            OrderRepository orderRepository, 
+            IMapper mapper, 
+            IConfiguration configuration)
         {
             this.orderRepository = orderRepository;
             this.mapper = mapper;
+            this.configuration = configuration;
+
+            serviceBusConnectionString = this.configuration.GetValue<string>("ServiceBusConnectionString");
+            subscriptionName = this.configuration.GetValue<string>("SubscriptionName");
+            checkoutMessageTopic = this.configuration.GetValue<string>("CheckoutMessageTopic");
         }
 
         private async Task OnCheckoutMessageReceived(ProcessMessageEventArgs args)
