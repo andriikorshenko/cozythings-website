@@ -11,11 +11,12 @@ namespace CozyThings.Services.OrderApi.Messaging
     public class AzureServiceBusConsumer
     {
         private readonly string serviceBusConnectionString;
-        private readonly string subscriptionName;
+        private readonly string subscriptionCheckout;
         private readonly string checkoutMessageTopic;
         private readonly OrderRepository orderRepository;
         private readonly IMapper mapper;
         private readonly IConfiguration configuration;
+        private ServiceBusProcessor checkOutProcessor;
 
         public AzureServiceBusConsumer(
             OrderRepository orderRepository, 
@@ -27,8 +28,31 @@ namespace CozyThings.Services.OrderApi.Messaging
             this.configuration = configuration;
 
             serviceBusConnectionString = this.configuration.GetValue<string>("ServiceBusConnectionString");
-            subscriptionName = this.configuration.GetValue<string>("SubscriptionName");
+            subscriptionCheckout = this.configuration.GetValue<string>("SubscriptionCheckout");
             checkoutMessageTopic = this.configuration.GetValue<string>("CheckoutMessageTopic");
+
+            var client = new ServiceBusClient(serviceBusConnectionString);
+
+            checkOutProcessor = client.CreateProcessor(checkoutMessageTopic, subscriptionCheckout);
+        }
+
+        public async Task Start()
+        {
+            checkOutProcessor.ProcessMessageAsync += OnCheckoutMessageReceived;
+            checkOutProcessor.ProcessErrorAsync += ErrorHandler;
+            await checkOutProcessor.StartProcessingAsync();
+        }
+
+        public async Task Stop()
+        {
+            await checkOutProcessor.StopProcessingAsync();
+            await checkOutProcessor.DisposeAsync();
+        }
+
+        Task ErrorHandler(ProcessErrorEventArgs args)
+        {
+            Console.WriteLine(args.Exception.ToString());
+            return Task.CompletedTask;
         }
 
         private async Task OnCheckoutMessageReceived(ProcessMessageEventArgs args)
