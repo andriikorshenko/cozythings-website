@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CozyThings.Services.OrderApi.Messaging
 {
-    public class AzureServiceBusConsumer
+    public class AzureServiceBusConsumer : IAzureServiceBusConsumer
     {
         private readonly string serviceBusConnectionString;
         private readonly string subscriptionCheckout;

@@ -1,6 +1,8 @@
 using AutoMapper;
 using CozyThings.Services.OrderApi;
 using CozyThings.Services.OrderApi.Data;
+using CozyThings.Services.OrderApi.Extantions;
+using CozyThings.Services.OrderApi.Messaging;
 using CozyThings.Services.OrderApi.Repository.Imp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +22,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var optionBuilder = new DbContextOptionsBuilder<AppDbContext>();
 optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddSingleton(new OrderRepository(optionBuilder.Options));
+builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
@@ -77,6 +80,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAzureServiceBusConsumer();
 
 app.UseHttpsRedirection();
 
